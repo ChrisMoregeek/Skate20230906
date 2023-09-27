@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Skateboarding</title>
+    <meta name="description" content="Example of WebGL, Unity, Avaturn">
+    <link rel="stylesheet" href="data/style.css">
+</head>
+
+<body>
+    <div id="canvas-wrap">
+        <div id="avaturn-container">
+            <iframe id="avaturn-iframe" class="vto-frame" allow="camera *; microphone *"></iframe>
+        </div>
+        <div id="unity-container">
+            <canvas id="unity-canvas" ></canvas>
+        </div>
+    </div>
+</body>
+
+<script src="data/Global.js"></script>
+<script src="data/AvaturnFrame.js"></script>
+<script src="Build/202309271530.loader.js"></script>
+<script>
+    function unityShowBanner(msg, type) {
+        
+    }
+    
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/202309271530.loader.js";
+    var config = {
+        dataUrl: buildUrl + "/202309271530.data",
+        frameworkUrl: buildUrl + "/202309271530.framework.js",
+        codeUrl: buildUrl + "/202309271530.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Moregeek",
+        productName: "Skateboarding",
+        productVersion: "0.1",
+        showBanner: unityShowBanner,
+    };
+
+    createUnityInstance(canvas, config, (progress) => {
+        //progressBarFull.style.width = 100 * progress + "%";
+    })
+        .then((unityInstance) => {
+            gameInstance = unityInstance;
+        })
+        .catch((message) => {
+            alert(message);
+        });
+</script>
+
+</html>
